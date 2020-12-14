@@ -174,7 +174,8 @@ function alldone (timer) {
                 str = JSON.stringify(str);
                 localStorage.setItem("keepScore",str);
             }        
-            window.location.replace("highscores.html"); 
+            window.location.replace("./assets/highscores.html"); 
+            
         }; 
     }); 
 }}               
