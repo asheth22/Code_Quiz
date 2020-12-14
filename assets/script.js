@@ -50,7 +50,7 @@ startquiz.addEventListener('click', function(event) {
     event.preventDefault();
     setInterval(function() {
         timer--;
-        timeleft.textContent = "Tine left:  " + timer + "s";
+        timeleft.textContent = "Time left:  " + timer + "s";
         if (timer < 0) {
             timeleft.textContent = "Time is up";
             window.location.replace("HighScores.html");
@@ -154,26 +154,27 @@ function alldone (timer) {
     SubmitEl.addEventListener('click', function() {
 
         var initials = InputEl.value;
-        
         var str;
-        if (localStorage.getItem("keepScore") === null){
-        if (typeof initials === typeof undefined ){
+        
+        if (initials === "" ){
             alert("Please enter initials to save scores");
-        } else{
-            scoreList.push( {name : initials, score : timer });
-            str = JSON.stringify(scoreList)
-            localStorage.setItem("keepScore", str); 
-        }
-    }   else{
-            str = localStorage.getItem("keepScore"); 
-            str = JSON.parse(str);
-            str.push( {name : initials, score : timer });
-            scoreList = str;
-            str = JSON.stringify(str);
-            localStorage.setItem("keepScore",str);
-           }        
-             
-           window.location.replace("highscores.html"); 
+        } 
+        else{
+            console.log("type of initials: ", typeof(initials), initials);
+            if (localStorage.getItem("keepScore") === null){
+                scoreList.push( {name : initials, score : timer });
+                str = JSON.stringify(scoreList)
+                localStorage.setItem("keepScore", str); 
+            }
+        else {
+                str = localStorage.getItem("keepScore"); 
+                str = JSON.parse(str);
+                str.push( {name : initials, score : timer });
+                scoreList = str;
+                str = JSON.stringify(str);
+                localStorage.setItem("keepScore",str);
+            }        
+            window.location.replace("highscores.html"); 
+        }; 
     }); 
-}
-        }        
+}}               

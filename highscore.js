@@ -19,7 +19,7 @@ if (scoreList !== null) {
 for (i=0; i<scoreList.length; i++) {
    console.log("High Score Array", scoreList[i].name, "Score", scoreList[i].score);
    var scoreli = document.createElement("li");
-   scoreli.textContent =  (scoreList[i].name + " " + scoreList[i].score);
+   scoreli.textContent =  (scoreList[i].name + ":                " + scoreList[i].score);
    hsEl.appendChild(scoreli); 
    }
 }
