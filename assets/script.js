@@ -1,9 +1,8 @@
-/* Defining question and answer choices */
 var qBank = [
     {
     question: "HTML stands for: ",
     choices: ["Home Tool Madeup Language", "Hyperlinks Text Makeup Language", "Hyper Text Markup Language", "High Tech Markup Langugae"],
-    answer: "Hyper Text Narkup Language",
+    answer: "Hyper Text Markup Language",
     },
 
     {
@@ -27,79 +26,154 @@ var qBank = [
     {
     question: "Javascript Math.random() returns: ",
     choices: ["random number between 0 and infinity", "random number between 0 and 1", "whole numbers", "None of the above"],
-    answer: "random number between 0 and infinity",     
+    answer: "random number between 0 and 1",     
     }
  ]  
 
  /* Selecting html elements */
-var startquiz = document.querySelector("#startquiz");
+ var tineleft = document.querySelector("#timeleft");
+ var startquiz = document.querySelector("#startquiz");
+ var quizSec = document.querySelector(".quiz-section")
 var container = document.querySelector(".container");
-var tineleft = document.querySelector("#timeleft");
+var response = document.querySelector(".validate"); 
+
 /* Defining gl0bal variables */
-var index = 0;
+var qIndex = 0;
 var score = 0;
 var timer = 75;
 var holdInterval = 0;
 var penalty = 10;
+var scoreList = []; 
+
   
-
-
 startquiz.addEventListener('click', function(event) {
     event.preventDefault();
     setInterval(function() {
         timer--;
         timeleft.textContent = "Tine left:  " + timer + "s";
         if (timer < 0) {
-            timeleft.textContent = "Time is ip";
+            timeleft.textContent = "Time is up";
+            window.location.replace("HighScores.html");
         }
     }, 1000);
-    presentquestions();
+        
+            presentquestions(qIndex);
+})
+
+function presentquestions(i) {
+    quizSec.innerHTML = "";
+        
+    var userQ = qBank[i].question;
+    var userC = qBank[i].choices;
+        
+    console.log("Question is: " , userQ);
+    quizSec.textContent = userQ;
+                        
+    var ul = document.createElement("ul"); 
+    quizSec.appendChild(ul); 
+    for (j=0; j<userC.length; j++) {
+        var buttonEl = document.createElement('BUTTON');
+        var linebreak = document.createElement('br')
+        ul.appendChild(linebreak);
+        ul.appendChild(buttonEl);
+            
+        buttonEl.textContent = userC[j];
+        buttonEl.setAttribute('id', j);
+        buttonEl.setAttribute('class', "ansbtn");
     }
-)
+    var btnList = document.querySelector("ul"); 
+    console.log("btnEl Created ", btnList);
+    btnList.addEventListener('click', function(event) {
+    console.log(event); 
+    event.preventDefault();
+    if(event.target.matches("button")) {
+        console.log(event.target.id); 
+        var index = parseInt(event.target.id); 
+        
+        console.log("Correct Answer: ", qBank[i].answer);
+        console.log("User Answer: ", userC[index]);
 
-function presentquestions() {
-    /* for (i=0; i<qBank.length; i++) { */
-        container.innerHTML = "";
-        var i=0;
-        var userQ = qBank[i].question;
-        var userC = qBank[i].choices;
-        var userA = (qBank[i].answer).toString;
-        console.log("Question is: " , userQ);
-        
-        container.innerHTML = userQ;
-        
-        var ul = document.createElement("ul"); 
-        container.appendChild(ul);
-        for (j=0; j<userC.length; j++) {
-            var li = document.createElement('li');
-            ul.appendChild(li);
-            li.textContent = userC[j];
-            li.setAttribute('id', j);
-            console.log(li);
+        if((userC[index]) === qBank[i].answer) {
+            console.log("Inside if loop");
+            response.textContent = "Correct Answer";
+            score++;
+        }
+        else {
+            console.log("Inside else loop");
+            response.innerHTML = "Wrong Answer";
+            timer = timer -10;
             }
-        var listEl = document.querySelector("ul");    
-        listEl.addEventListener('click', function(event) {
-            event.preventDefault();
-            if(event.target.matches("li")) {
-                console.log(event.target.id); 
-               var index = parseInt(event.target.id); 
-               var response = document.createElement("div"); 
-                container.appendChild(response);
-                console.log("Correct Answer: ", userA);
-                console.log("User Answer: ", userC[index]);
-
-               if((userC[index]).toString === userA) {
-                response.textContent = "Correct Answer";
-                score++;
+            qIndex++;
+            console.log("Index is: ", qIndex);
+            if (qIndex<5) {
+                presentquestions(qIndex);
+            }
+            else {
+                console.log("Questions Correct: ", score);
+                alldone(timer);
                }
-               else {
-                response.textContent = "Wrong Answer";
-                timer = timer -10;
-               }
-              }            
-        })
-    /* } */
+             }
+            });
 
+function alldone (timer) {
+    console.log("score passed to alldone: ", timer);
+    
+    quizSec.innerHTML = "";
+    response.innerHTML = ""; 
+    var h4El = document.createElement("h4");``
+    quizSec.appendChild(h4El);
+    h4El.textContent = "All Done!!";
+    
+    var pEl = document.createElement("p");
+    quizSec.appendChild(pEl);
+    pEl.textContent = "Your Score is " + timer;
+     
+
+    var labelEl = document.createElement("label");
+    labelEl.setAttribute("id", "createLabel");
+    labelEl.textContent = "Enter your initials: ";
+
+    quizSec.appendChild(labelEl);
+
+    // input
+    var InputEl = document.createElement("input");
+    InputEl.setAttribute("type", "text");
+    InputEl.setAttribute("id", "initials");
+    InputEl.textContent = "";
+
+    quizSec.appendChild(InputEl);
+
+    // submit
+    var SubmitEl = document.createElement("button");
+    SubmitEl.setAttribute("type", "submit");
+    SubmitEl.setAttribute("id", "Submit");
+    SubmitEl.textContent = "Submit";
+
+    quizSec.appendChild(SubmitEl);
+
+    SubmitEl.addEventListener('click', function() {
+
+        var initials = InputEl.value;
+        
+        var str;
+        if (localStorage.getItem("keepScore") === null){
+        if (typeof initials === typeof undefined ){
+            alert("Please enter initials to save scores");
+        } else{
+            scoreList.push( {name : initials, score : timer });
+            str = JSON.stringify(scoreList)
+            localStorage.setItem("keepScore", str); 
+        }
+    }   else{
+            str = localStorage.getItem("keepScore"); 
+            str = JSON.parse(str);
+            str.push( {name : initials, score : timer });
+            scoreList = str;
+            str = JSON.stringify(str);
+            localStorage.setItem("keepScore",str);
+           }        
+             
+           window.location.replace("highscores.html"); 
+    }); 
 }
-
-
+        }        
