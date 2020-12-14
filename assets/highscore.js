@@ -5,7 +5,7 @@ clearEl = document.querySelector("#clear");
 gobackEl.addEventListener("click", function () {
     console.log("Go back clicked");
     window.location.replace("../index.html");
-    });  
+    }); 
 
 clearEl.addEventListener("click", function () {
     localStorage.clear();

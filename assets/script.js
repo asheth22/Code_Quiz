@@ -1,7 +1,7 @@
 var qBank = [
     {
     question: "HTML stands for: ",
-    choices: ["Home Tool Madeup Language", "Hyperlinks Text Makeup Language", "Hyper Text Markup Language", "High Tech Markup Langugae"],
+    choices: ["Home Tool Madeup Language", "Hyperlinks Text Makeup Language", "Hyper Text Markup Language", "High Tech Markup Language"],
     answer: "Hyper Text Markup Language",
     },
 
@@ -31,11 +31,12 @@ var qBank = [
  ]  
 
  /* Selecting html elements */
- var tineleft = document.querySelector("#timeleft");
+ var timeleft = document.querySelector("#timeleft");
  var startquiz = document.querySelector("#startquiz");
  var quizSec = document.querySelector(".quiz-section")
 var container = document.querySelector(".container");
 var response = document.querySelector(".validate"); 
+var timeUp = document.querySelector("#Time-up");
 
 /* Defining gl0bal variables */
 var qIndex = 0;
@@ -44,21 +45,27 @@ var timer = 75;
 var holdInterval = 0;
 var penalty = 10;
 var scoreList = []; 
+var setInt;
 
-  
 startquiz.addEventListener('click', function(event) {
     event.preventDefault();
-    setInterval(function() {
-        timer--;
-        timeleft.textContent = "Time left:  " + timer + "s";
-        if (timer < 0) {
-            timeleft.textContent = "Time is up";
-            window.location.replace("HighScores.html");
-        }
-    }, 1000);
+    setInt = setInterval(interval, 1000);
         
             presentquestions(qIndex);
-})
+});
+
+function interval (){
+    
+    timer--;
+    timeleft.textContent = "Time left:  " + timer + "s";
+    if (timer <= 0) {
+        console.log("0", timeUp);
+        clearInterval(setInt);
+       
+        window.location.replace("./assets/highscores.html");
+          
+    }
+}
 
 function presentquestions(i) {
     quizSec.innerHTML = "";
@@ -117,6 +124,7 @@ function presentquestions(i) {
 
 function alldone (timer) {
     console.log("score passed to alldone: ", timer);
+    clearInterval(setInt);
     
     quizSec.innerHTML = "";
     response.innerHTML = ""; 
@@ -166,7 +174,7 @@ function alldone (timer) {
                 str = JSON.stringify(scoreList)
                 localStorage.setItem("keepScore", str); 
             }
-        else {
+            else {
                 str = localStorage.getItem("keepScore"); 
                 str = JSON.parse(str);
                 str.push( {name : initials, score : timer });
