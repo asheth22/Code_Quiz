@@ -46,6 +46,7 @@ var holdInterval = 0;
 var penalty = 10;
 var scoreList = []; 
 var setInt;
+var timeUpflag = false; 
 
 startquiz.addEventListener('click', function(event) {
     event.preventDefault();
@@ -53,7 +54,7 @@ startquiz.addEventListener('click', function(event) {
         
             presentquestions(qIndex);
 });
-
+localStorage.removeItem('flag');
 function interval (){
     
     timer--;
@@ -61,11 +62,12 @@ function interval (){
     if (timer <= 0) {
         console.log("0", timeUp);
         var msg = 'Time Up!! Click "Go Back" and take the quiz again!';
-        
+        timeUpflag = true;
+        localStorage.setItem('flag', timeUpflag);
         localStorage.setItem('msg', msg);
         clearInterval(setInt);
         window.location.replace("./assets/highscores.html");
-          
+        
     }
 }
 function presentquestions(i) {

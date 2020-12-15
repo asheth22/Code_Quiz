@@ -32,7 +32,7 @@ The following is demo of the application
 
 ## Application URL
 
-* The URL of the deployed application is [Code_Quiz]( https://github.com/asheth22/Code_Quiz/blob/main/assets/Code_Quiz_demo.mp4)
+* The URL of the deployed application is [Code_Quiz]( https://asheth22.github.io/Code_Quiz/)
 
 - - -
 © 2020 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.

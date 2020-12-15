@@ -13,7 +13,8 @@ clearEl.addEventListener("click", function () {
     }); 
 
 var msg = localStorage.getItem("msg"); 
-if (msg !== null) {
+var timeUpflag = localStorage.getItem('flag');
+if (msg !== "" && timeUpflag) {
     console.log("TYpe of msg: ", typeof(msg), "msgg : ", msg);
     alert(msg);
 }
