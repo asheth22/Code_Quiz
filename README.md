@@ -27,12 +27,12 @@ Please note that the application is best viewwed in Google Chrome and is designe
 
 The following is demo of the application
 
-![Demo](https://github.com/asheth22/Code_Quiz/tree/main/assets/Code_Quiz_demo.mp4)
+![Demo](https://github.com/asheth22/Code_Quiz/blob/main/assets/Code_Quiz_demo.mp4)
 
 
 ## Application URL
 
-* The URL of the deployed application is [Code_Quiz]( https://asheth22.github.io/Code_Quiz/)
+* The URL of the deployed application is [Code_Quiz]( https://github.com/asheth22/Code_Quiz/blob/main/assets/Code_Quiz_demo.mp4)
 
 - - -
 © 2020 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.

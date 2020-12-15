@@ -1,11 +1,9 @@
-
-
  .container {
     margin: auto;
     margin-top: 50px;
     width: 60%;
     padding: 10px; 
-    /* vertical-align: middle;    */
+    
 } 
 #timeleft {
     float: right;
@@ -29,8 +27,7 @@ h2 {
     top: 50px;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    
+    transform: translate(-50%, -50%);    
 }
 
 .ansbtn {
@@ -45,7 +42,6 @@ h2 {
     margin: 15px;
 }
 li {
-
     list-style: none;
     background-color: rgb(252, 231, 252);
     margin-top: 10px;
@@ -63,4 +59,5 @@ li {
    }
      a {
          margin-left: 10%;
-     } */
+     } 
+} 

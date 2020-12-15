@@ -12,6 +12,11 @@ clearEl.addEventListener("click", function () {
     location.reload();
     }); 
 
+var msg = localStorage.getItem("msg"); 
+if (msg !== null) {
+    console.log("TYpe of msg: ", typeof(msg), "msgg : ", msg);
+    alert(msg);
+}
 var scoreList = localStorage.getItem("keepScore"); 
 scoreList = JSON.parse(scoreList);
 

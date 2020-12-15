@@ -34,9 +34,9 @@ var qBank = [
  var timeleft = document.querySelector("#timeleft");
  var startquiz = document.querySelector("#startquiz");
  var quizSec = document.querySelector(".quiz-section")
-var container = document.querySelector(".container");
-var response = document.querySelector(".validate"); 
-var timeUp = document.querySelector("#Time-up");
+ var container = document.querySelector(".container");
+ var response = document.querySelector(".validate"); 
+ var timeUp = document.querySelector("#Time-up");
 
 /* Defining gl0bal variables */
 var qIndex = 0;
@@ -60,14 +60,19 @@ function interval (){
     timeleft.textContent = "Time left:  " + timer + "s";
     if (timer <= 0) {
         console.log("0", timeUp);
+        var msg = 'Time Up!! Click "Go Back" and take the quiz again!';
+        
+        localStorage.setItem('msg', msg);
         clearInterval(setInt);
-       
         window.location.replace("./assets/highscores.html");
           
     }
 }
-
 function presentquestions(i) {
+    if (localStorage.getItem('msg') !== null) {
+        localStorage.removeItem('msg');
+        console.log("local storage msg removed");
+    }
     quizSec.innerHTML = "";
         
     var userQ = qBank[i].question;
@@ -108,7 +113,7 @@ function presentquestions(i) {
         else {
             console.log("Inside else loop");
             response.innerHTML = "Wrong Answer";
-            timer = timer -10;
+            timer = timer -15;
             }
             qIndex++;
             console.log("Index is: ", qIndex);
@@ -124,8 +129,8 @@ function presentquestions(i) {
 
 function alldone (timer) {
     console.log("score passed to alldone: ", timer);
-    clearInterval(setInt);
-    
+   /*  clearInterval(setInt);
+     */
     quizSec.innerHTML = "";
     response.innerHTML = ""; 
     var h4El = document.createElement("h4");``
@@ -182,8 +187,7 @@ function alldone (timer) {
                 str = JSON.stringify(str);
                 localStorage.setItem("keepScore",str);
             }        
-            window.location.replace("./assets/highscores.html"); 
-            
+            window.location.replace("./assets/highscores.html");          
         }; 
     }); 
 }}               
