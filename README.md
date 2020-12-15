@@ -27,7 +27,7 @@ Please note that the application is best viewwed in Google Chrome and is designe
 
 The following is demo of the application
 
-![Demo](https://github.com/asheth22/Code_Quiz/blob/main/assets/Code_Quiz_demo.mp4)
+![Demo](https://github.com/asheth22/Code_Quiz/blob/main/assets/Code_Quiz_demo.gif)
 
 
 ## Application URL
