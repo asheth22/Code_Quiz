@@ -7,7 +7,7 @@ var qBank = [
     },
 
     {
-        question: "Which of the following is NOT a javascript datatype ",
+        question: "Which of the following is NOT a javascript datatype? ",
         choices: ["string", "number", "table", "boolean"],
         answer: "table",
     },

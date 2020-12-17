@@ -1,23 +1,26 @@
+ /* Syling for main section */
  .container {
     margin: auto;
     margin-top: 50px;
-    width: 60%;
+    width: 90%;
     padding: 10px; 
     
 } 
+a {
+    margin-left: 10px;
+}
 #timeleft {
     float: right;
     margin-right: 30px;
 }
-
 h1 {
     text-align: center;
 }
-
 h2 {
     margin: auto;
     text-align: left;
 }
+/* Styling for Start Quiz button */
 #startquiz {
     background-color: rgb(131, 26, 131);
     font-size: large;
@@ -29,8 +32,13 @@ h2 {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);    
 }
-
-.ansbtn {
+.quiz-section {
+    font-size: 16px;
+    color: rgb(7, 7, 43);
+    font-weight: bold; ;
+}
+/* Styling for buttons */
+.ansbtn, #Submit{
     background-color: rgb(131, 26, 131);
     color: white;
     margin: 5px;
@@ -39,8 +47,10 @@ h2 {
 #goback, #clear {
     background-color: rgb(131, 26, 131);
     color: white;
-    margin: 15px;
+    margin-top: 15px;
+    
 }
+/* Styling for dynamically added list items */
 li {
     list-style: none;
     background-color: rgb(252, 231, 252);
@@ -50,7 +60,7 @@ li {
     font-size: 14px;
     color: black;
 } 
-
+/* Styling for app to be responsive */
 @media screen and (max-width: 640px) {
     
    #wrapper {
